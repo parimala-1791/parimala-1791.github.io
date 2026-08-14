@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Parimala | Personal Portfolio</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.35), transparent 30%),
+                radial-gradient(circle at 90% 10%, rgba(236, 72, 153, 0.28), transparent 30%),
+                radial-gradient(circle at 50% 90%, rgba(59, 130, 246, 0.25), transparent 35%),
+                #080812;
+        }
+
+        /* Animated Background */
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            animation: float 8s ease-in-out infinite alternate;
+        }
+
+        body::before {
+            background: #8b5cf6;
+            top: 10%;
+            left: -150px;
+        }
+
+        body::after {
+            background: #ec4899;
+            bottom: 5%;
+            right: -150px;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(-30px);
+            }
+            to {
+                transform: translateY(40px);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(92%, 1100px);
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #c084fc;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #c084fc;
+        }
+
+        /* General */
+        section {
+            width: min(1100px, 92%);
+            margin: auto;
+            padding: 110px 0;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.075);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Hero */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 150px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 9px 16px;
+            margin-bottom: 20px;
+            border-radius: 50px;
+            background: rgba(192, 132, 252, 0.12);
+            border: 1px solid rgba(192, 132, 252, 0.3);
+            color: #d8b4fe;
+            font-size: 13px;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 82px);
+            line-height: 0.95;
+            margin-bottom: 25px;
+            letter-spacing: -4px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #c084fc, #f472b6, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: #b7b7c9;
+            max-width: 620px;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn.secondary {
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Profile Glass Orb */
+        .profile-box {
+            width: 300px;
+            height: 300px;
+            margin: auto;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+
+            background:
+                linear-gradient(145deg,
+                rgba(255,255,255,0.16),
+                rgba(255,255,255,0.03));
+
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow:
+                inset 0 0 40px rgba(255,255,255,0.08),
+                0 0 80px rgba(139,92,246,0.3);
+
+            backdrop-filter: blur(25px);
+            animation: profileFloat 5s ease-in-out infinite;
+        }
+
+        @keyframes profileFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .profile-box::before {
+            content: "";
+            position: absolute;
+            width: 210px;
+            height: 210px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            filter: blur(45px);
+            opacity: 0.45;
+        }
+
+        .profile-text {
+            position: relative;
+            font-size: 90px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Section Heading */
+        .section-title {
+            margin-bottom: 50px;
+        }
+
+        .section-title small {
+            color: #c084fc;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            margin-top: 10px;
+        }
+
+        /* About */
+        .about-card {
+            padding: 40px;
+            border-radius: 28px;
+            line-height: 1.9;
+            color: #c4c4d3;
+        }
+
+        .about-card strong {
+            color: #fff;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .skill {
+            padding: 28px 20px;
+            border-radius: 22px;
+            text-align: center;
+            transition: 0.35s;
+        }
+
+        .skill:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(192, 132, 252, 0.4);
+        }
+
+        .skill-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .skill h3 {
+            font-size: 15px;
+        }
+
+        .skill p {
+            font-size: 12px;
+            color: #9999aa;
+            margin-top: 7px;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .project {
+            padding: 28px;
+            border-radius: 25px;
+            transition: 0.35s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project:hover {
+            transform: translateY(-8px);
+        }
+
+        .project-number {
+            color: #c084fc;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .project h3 {
+            margin: 18px 0 12px;
+            font-size: 20px;
+        }
+
+        .project p {
+            color: #a7a7b8;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 22px;
+        }
+
+        .project-tags span {
+            font-size: 11px;
+            padding: 6px 10px;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.08);
+            color: #c8c8d5;
+        }
+
+        /* Contact */
+        .contact-card {
+            padding: 50px;
+            border-radius: 30px;
+            text-align: center;
+        }
+
+        .contact-card h2 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .contact-card p {
+            color: #aaaabd;
+            margin-bottom: 30px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            transition: 0.3s;
+        }
+
+        .contact-links a:hover {
+            background: rgba(192,132,252,0.18);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 35px 20px;
+            color: #777789;
+            font-size: 13px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        footer span {
+            color: #c084fc;
+        }
+
+        /* Responsive */
+        @media (max-width: 850px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero p {
+                margin: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-box {
+                width: 240px;
+                height: 240px;
+            }
+
+            .profile-text {
+                font-size: 70px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            section {
+                padding: 80px 0;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .skill {
+                padding: 22px 10px;
+            }
+
+            .about-card,
+            .contact-card {
+                padding: 28px 22px;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">P<span>.</span></div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Hero -->
+    <section id="home">
+
+        <div class="hero">
+
+            <div>
+                <div class="tag">✦ Welcome to my portfolio</div>
+
+                <h1>
+                    Hi, I'm<br>
+                    <span>Parimala.</span>
+                </h1>
+
+                <p>
+                    A passionate Computing & Data Science student who loves
+                    building creative digital experiences, exploring technology,
+                    and turning ideas into meaningful projects.
+                </p>
+
+                <div class="buttons">
+                    <a href="#projects" class="btn primary">
+                        View My Work →
+                    </a>
+
+                    <a href="#contact" class="btn secondary">
+                        Let's Connect
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="profile-box">
+                <div class="profile-text">P</div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- About -->
+    <section id="about">
+
+        <div class="section-title">
+            <small>01 — About Me</small>
+            <h2>Who I Am</h2>
+        </div>
+
+        <div class="about-card glass">
+            <p>
+                I'm <strong>Parimala</strong>, a curious and creative technology
+                enthusiast with a strong interest in
+                <strong>Computing, Data Science, Python, Web Development
+                and Artificial Intelligence.</strong>
+            </p>
+
+            <br>
+
+            <p>
+                I enjoy learning new technologies, solving problems and
+                creating projects that combine functionality with beautiful
+                user experiences. I'm continuously improving my technical
+                skills and looking for opportunities to grow as a developer.
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- Skills -->
+    <section id="skills">
+
+        <div class="section-title">
+            <small>02 — My Skills</small>
+            <h2>What I Work With</h2>
+        </div>
+
+        <div class="skills-grid">
+
+            <div class="skill glass">
+                <div class="skill-icon">🐍</div>
+                <h3>Python</h3>
+                <p>Programming & Data</p>
+            </div>
+
+            <div class="skill glass">
+                <div class="skill-icon">💻</div>
+                <h3>C Programming</h3>
+                <p>DSA & Problem Solving</p>
+            </div>
+
+            <div class="skill glass">
+                <div class="skill-icon">🌐</div>
+                <h3>Web Development</h3>
+                <p>HTML, CSS & JavaScript</p>
+            </div>
+
+            <div class="skill glass">
+                <div class="skill-icon">📊</div>
+                <h3>Data Science</h3>
+                <p>Data Analysis</p>
+            </div>
+
+            <div class="skill glass">
+                <div class="skill-icon">🧠</div>
+                <h3>Problem Solving</h3>
+                <p>Logical Thinking</p>
+            </div>
+
+            <div class="skill glass">
+                <div class="skill-icon">🔗</div>
+                <h3>DSA</h3>
+                <p>Algorithms & Structures</p>
+            </div>
+
+            <div class="skill glass">
+                <div class="skill-icon">🤖</div>
+                <h3>AI & ML</h3>
+                <p>Exploring Intelligence</p>
+            </div>
+
+            <div class="skill glass">
+                <div class="skill-icon">✨</div>
+                <h3>Creativity</h3>
+                <p>Ideas & Innovation</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Projects -->
+    <section id="projects">
+
+        <div class="section-title">
+            <small>03 — My Work</small>
+            <h2>Featured Projects</h2>
+        </div>
+
+        <div class="projects-grid">
+
+            <div class="project glass">
+                <div class="project-number">01 / PROJECT</div>
+
+                <h3>Threat Intelligence Graph</h3>
+
+                <p>
+                    A cybersecurity project designed to manage and analyze
+                    relationships between different cyber threats using
+                    graph-based data structures.
+                </p>
+
+                <div class="project-tags">
+                    <span>C</span>
+                    <span>Graph</span>
+                    <span>Hash Table</span>
+                    <span>BFS</span>
+                </div>
+            </div>
+
+
+            <div class="project glass">
+                <div class="project-number">02 / PROJECT</div>
+
+                <h3>Personal Portfolio</h3>
+
+                <p>
+                    A modern responsive portfolio website created with a
+                    glassmorphism interface, animated backgrounds and
+                    interactive sections.
+                </p>
+
+                <div class="project-tags">
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                    <span>UI/UX</span>
+                </div>
+            </div>
+
+
+            <div class="project glass">
+                <div class="project-number">03 / PROJECT</div>
+
+                <h3>Python Utility Package</h3>
+
+                <p>
+                    A modular Python package created to demonstrate reusable
+                    code, package structure, installation and practical
+                    programming concepts.
+                </p>
+
+                <div class="project-tags">
+                    <span>Python</span>
+                    <span>Packages</span>
+                    <span>Modules</span>
+                    <span>pip</span>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Contact -->
+    <section id="contact">
+
+        <div class="contact-card glass">
+
+            <h2>Let's Create Something ✨</h2>
+
+            <p>
+                Have an idea, project or opportunity?
+                I'd love to hear from you.
+            </p>
+
+            <div class="contact-links">
+
+                <a href="mailto:yourmail@example.com">
+                    ✉ Email
+                </a>
+
+                <a href="https://github.com/" target="_blank">
+                    GitHub
+                </a>
+
+                <a href="https://www.linkedin.com/" target="_blank">
+                    LinkedIn
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        © 2026 <span>Parimala</span>. Designed with passion & creativity.
+    </footer>
+
+</body>
+</html>
